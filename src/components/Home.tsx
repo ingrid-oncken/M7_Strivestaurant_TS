@@ -3,19 +3,19 @@ import dishes from '../data/menu.json'
 import { useState } from 'react'
 import DishComments from './DishComments'
 import upperName from '../helpers/lib'
-import { Menu } from '../types/Menu'
-import { Dish } from '../types/Dish'
+import { Dishes } from '../types/Dishes'
 
 //let's shape a interface for this component Props
 //Is title ==== name???
 interface HomeProps {
   title: string
-  // dishes: Menu[]
-  // dish: Dish
+  // dishesArr: Dishes[]
 }
 
+// interface HomeState {}
+
 const Home = ({ title }: HomeProps) => {
-  const [selected, setSelected] = useState(null)
+  const [selected, setSelected] = useState<Dishes | null>(null)
 
   return (
     <Container>
@@ -25,23 +25,22 @@ const Home = ({ title }: HomeProps) => {
           <h3 className="text-center mb-4">We can only cook pasta...</h3>
           <Carousel>
             {dishes.map((dish, i) => (
-              console.log(dish)
-              // <Carousel.Item
-              //   key={dish.id}
-              //   onClick={() => {
-              //     setSelected(dish)
-              //   }}
-              // >
-              //   <img
-              //     className="d-block w-100"
-              //     src={dish.image}
-              //     alt={'slide number ' + (i + 1)}
-              //   />
-              //   <Carousel.Caption>
-              //     <h3>{dish.name}</h3>
-              //     <p>{dish.description}</p>
-              //   </Carousel.Caption>
-              // </Carousel.Item>
+              <Carousel.Item
+                key={dish.id}
+                onClick={() => {
+                  setSelected(dish)
+                }}
+              >
+                <img
+                  className="d-block w-100"
+                  src={dish.image}
+                  alt={'slide number ' + (i + 1)}
+                />
+                <Carousel.Caption>
+                  <h3>{dish.name}</h3>
+                  <p>{dish.description}</p>
+                </Carousel.Caption>
+              </Carousel.Item>
             ))}
           </Carousel>
         </Col>

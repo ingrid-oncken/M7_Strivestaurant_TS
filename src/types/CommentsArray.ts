@@ -3,7 +3,7 @@
 //this is the shape of the object containing the export interface CommentsArray {
 
 export interface CommentsArray {
-  id: number
+  id?: number
   rating: number
   comment: string
   author: string
